@@ -73,4 +73,4 @@ def verify(directory: Path) -> None:
 
 if __name__ == "__main__":
     verify(ROOT / "dist")
-    print("ZIP、wheel、sdist 内容审计和校验清单通过")
+    print("ZIP, wheel and sdist verified; checksum manifest written.")
