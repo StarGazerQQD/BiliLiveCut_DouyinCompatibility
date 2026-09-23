@@ -1,0 +1,10 @@
+include LICENSE README.md CHANGELOG.md pyproject.toml uv.lock
+recursive-include docs *.md
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include plugin/douyin-live *.py *.json requirements.txt
+prune .upstream
+prune .cache
+prune .local
+prune .venv
+global-exclude __pycache__ *.pyc *.pyo

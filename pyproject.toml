@@ -1,0 +1,68 @@
+[project]
+name = "bililivecut-douyin"
+dynamic = ["version"]
+description = "BiliLiveCut 抖音直播源插件"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["httpx>=0.27,<1"]
+
+[dependency-groups]
+dev = [
+    "bili-live-cut[web]",
+    "pytest>=8.2,<10",
+    "pytest-asyncio>=0.23,<2",
+    "pytest-mock>=3.14,<4",
+    "ruff>=0.12,<1",
+    "mypy>=1.15,<2",
+    "build>=1.2,<2",
+    "Pillow>=10,<13",
+]
+
+[tool.uv.sources]
+bili-live-cut = { git = "https://github.com/StarGazerQQD/BiliLiveCut.git", rev = "289cf51b1ee6a2c7816b118c57f39e86ff2d4223" }
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = { attr = "douyin_live.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["plugin/douyin-live"]
+
+[tool.setuptools.data-files]
+"share/bililivecut-douyin" = ["plugin/douyin-live/main.py", "plugin/douyin-live/plugin.json", "plugin/douyin-live/requirements.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q --tb=short"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".upstream", ".local", ".cache"]
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "D"]
+ignore = ["D203", "D213", "D400", "D415", "D403", "D107"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D100", "D101", "D102", "D103", "E501"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["plugin/douyin-live/douyin_live", "scripts"]
+strict = true
+follow_imports = "silent"
+
+[[tool.mypy.overrides]]
+module = ["app.*"]
+follow_imports = "silent"
+follow_untyped_imports = true

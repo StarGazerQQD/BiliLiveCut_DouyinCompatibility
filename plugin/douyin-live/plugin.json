@@ -1,0 +1,11 @@
+{
+  "id": "douyin-live",
+  "name": "抖音直播源",
+  "version": "0.1",
+  "api_version": "1",
+  "live_source_api_version": "1",
+  "entrypoint": "main.py:Plugin",
+  "settings_page": true,
+  "capabilities": ["live_source"],
+  "description": "抖音直播房间解析与取流，复用宿主的自动录制、分析和切片；v0.1 不采集弹幕。"
+}
